@@ -6,11 +6,35 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script src="./index.js"></script>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // Location of last degree, Trent University
+        const trentu = { lat: 44.358268654179525, lng: -78.28884994270675 };
+        // The map, centered at Trent University
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 10,
+          center: trentu,
+        });
+        // The marker, positioned at Trent University
+        const marker = new google.maps.Marker({
+          position: trentu,
+          map: map,
+        });
+      }
+    </script>
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
+    <h3>Trent University</h3>
     <!--The div element for the map -->
     <div id="map"></div>
   </body>
