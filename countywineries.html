@@ -109,12 +109,13 @@
     "lng": '-76.9717868911636',
     "description": content10
     }];
+  
   let map;
   function initMap() {
     const pec = { lat: 43.99995890218392, lng: -77.2327582844977 };
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 15,
+    const map = new google.maps.Map(document.getElementById("map"), {
       center: pec,
+      zoom: 10,
     });
   
    //Info Window
