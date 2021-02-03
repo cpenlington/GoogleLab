@@ -140,11 +140,11 @@
                     var contentString = '<div id="content"><h1>' + markersOnMap[i].placeName +
                         '</h1><h2>' + markersOnMap[i].placeDesc +
                         '</h2><p></p></div>';
-                    
+                    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
                     const marker = new google.maps.Marker({
                         position: markersOnMap[i].LatLng[0],
                         map: map,
-                        icon: "file:/images/winebar.png"
+                        icon: iconBase + '/images/winebar.png'
                     });
 
                     const infowindow = new google.maps.InfoWindow({
