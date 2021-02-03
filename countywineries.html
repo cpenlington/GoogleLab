@@ -25,124 +25,14 @@
       }
     </style>
     <script>
- //InfoWindows Content     
- var content1 = 
-  "<div><img scr="/Images/pic1.jpg' height=''><h1>Sandbanks Winery</h1><p>Address: 17598 Loyalist Prky, Wellington, ON; Tasting: Mon to Sun, by appointment; Tours: Complimentary tours daily; Dog Friendly; Food Pairings; Picnic Area; Wheelchair Accessible</p></div>"
 
-  var content2 = 
-  "<div><img scr="/Images/pic2.jpg' height=''><h1>TerraCello Winery</h1><p>Address: 2436 County Rd 1, Bloomfield, ON; Tasting: Only available by the bottle; Private Events; Outdoor Patio; Pizzeria; Enogastronmic Tours: $100/person for 1hr</p></div>"
-
-  var content3 =   
-  "<div><img scr="/Images/pic3.jpg' height=''><h1>Karlo Estates</h1><p>Address: 561 Danforth Rd, Wellington, ON; Tasting: Mon to Sun, $4 per 1oz., $10 for 3, $15 for 5; Tours: self guided tours available daily; Event Space; Tasting Plates; Picnic Area</p></div>"
-
-  var content4 = 
-  "<div><img scr="/Images/pic4.jpg' height=''><h1>Lighthall Vineyards</h1><p>Address: 308 Lighthall Rd, Milford. ON; Tasting: Wed to Sun; Small low volume and high quality winery; Produced in non-interventionist manner; Produces locally made cheese</p></div>"
-
-  var content5 = 
-  "<div><img scr="/Images/pic5.jpg' height=''><h1>Norman Hardie Winery</h1><p>Address: 1152 Greer Rd, Wellington, ON; Tasting: Mon to Sun, walk-ins welcome; Dog Friendly; Pizza Oven; Restaurant; Wheelchair Accessible</p></div>"
-
-  var content6 = 
-  "<div><img scr="/Images/pic6.jpg' height=''><h1>Black Prince Winery</h1><p>Address: 13370 Loyalist Prky, Picton, ON; Tasting: Mon to Sun, complimentary tasting of featured wines, $5 for 3 otherwise; Event Space; Pizza Oven, Sustainably Farmed</p></div>"
-
-  var content7 = 
-  "<div><img scr="/Images/pic7.jpg' height=''><h1>Rosehall Run</h1><p>Address: 1243 Greer Rd, Wellington, ON; Tasting: Mon to Sun, $5; Tours: by appointment; Dog Friendly; Light Snacks; Picnic Area; Sustainably Farmed; Wheelchair Accessible</p></div>"
-
-  var content8 = 
-  "<div><img scr="/Images/pic8.jpg' height=''><h1>Three Dog Winery</h1><p>Address: 1920 Fish Lake, Picton, ON; Tasting: Mon to Sun, $1/complimentary with purchase; Tours: call ahead, tasting fees apply; Event Space; Light Lunch; Live Music; Picnic Area</p></div>"
-
-  var content9 = 
-  "<div><img scr="/Images/pic9.jpg' height=''><h1>Huff Estates Winery</h1><p>Address: 2274 County Rd 1, Bloomfield, ON; Tasting: Mon to Sun, $2 each or $5 for 3, Tours: $8/person, incluses 3 samples; Pizza Oven; Restaurant; Event Space; Picnic Area</p></div>"
-
-  var content10 = 
-  "<div><img scr="/Images/pic10.jpg' height=''><h1>Waupoos Estate Winery</h1><p>Address: 3016 County Rd 8, Picton, ON: Tasting: Mon to Sun, $1 each, $2 for reserves and ice wines; Tours: Mon to Sun, or by appointment; Event Space; Restaurant</p></div>"
-
-//Marker points, wineries in PEC
-  var markers = [
-  { 
-    "title": 'Sandbanks Estate Winery',
-    "lat": '43.94008451249478',
-    "lng": '-77.41696616020205',
-    "description": content1
-    },
-    { 
-    "title": 'TerraCello Winery',
-    "lat": '44.02028270774693',
-    "lng": '-77.29948634286238',
-    "description": content2
-    },
-    "title": 'Karlo Estates Winery',
-    "lat": '43.9699060230289',
-    "lng": '-77.37134767095976',
-    "description": content3
-    },
-    "title": 'Lighthall Vineyards',
-    "lat": '43.89314927017774',
-    "lng": '-77.12345273478509',
-    "description": content4
-    },
-    "title": 'Norman Hardie Winery and Vineyard',
-    "lat": '43.95780170753629',
-    "lng": '-77.44502194932953',
-    "description": content5
-    },
-    "title": 'Black Prince Winery',
-    "lat": '44.005354534040684',
-    "lng": '-77.16401022041812',
-    "description": content6
-    },
-    "title": 'Rosehall Run Vineyards',
-    "lat": '43.953606505774545',
-    "lng": '-77.4492204280055',
-    "description": content7
-    },
-    "title": 'Three Dog Winery',
-    "lat": '44.13942806627715',
-    "lng": '-77.12025593271107',
-    "description": content8
-    },
-    "title": 'Huff Estates Winery',
-    "lat": '44.023513740213346',
-    "lng": '-77.28779744040993',
-    "description": content9
-    },
-    "title": 'Waupoos Estates Winery',
-    "lat": '44.01952759501089',
-    "lng": '-76.9717868911636',
-    "description": content10
-    }];
-      
       function initMap() {
         const pec = { lat: 43.99995890218392, lng: -77.23550486659113 };
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
           center: pec,
         });
-       
-      //URL reference: https://stackoverflow.com/questions/5868903/marker-content-infowindow-google-maps
-      //Creat new function with information for the infoWindow in it
-      function addInfoWindow(marker, message) {
 
-       var infoWindow = new google.maps.InfoWindow({
-         content: message
-       });
-        
-       for (var i = 0; i < markers.length; i++) {
-         var wineries = markers[i];
-         
-         var marker = new google.maps.Marker({
-           position: new google.maps.LatLng(wineries.lat, wineries.lng),
-           map: map,
-           title: wineries.title,
-            });
-         
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.open(map, marker);
-            });
-        }
-      
-      //Call the function with the array ID and the marker you want to create
-      addInfoWindow(marker, wineries);
-    
     </script>
   </head>
   <body>
