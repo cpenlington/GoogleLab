@@ -78,7 +78,7 @@
          (function (marker, data) {
            google.maps.event.addListener(marker, "click", function (e) {
              //Content inside div to set height and width of InfoWindow
-             infoWindow.setContent(<div style="width:250px">' + data.description + '</div>');
+             infoWindow.setContent('<div style="width:250px">' + data.description + '</div>');
              infoWindow.open(map, marker);
            });
          })(marker, data);
