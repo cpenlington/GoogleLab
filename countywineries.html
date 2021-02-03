@@ -39,6 +39,7 @@
             };
             var markersOnMap = [{
                     placeName: "Sandbanks Estate Winery",
+                    placeDesc: "Address: 17598 Loyalist Prky, Wellington, ON; Tasting: Mon to Sun, by appointment; Tours: Complimentary tours daily; Dog Friendly; Food Pairings; Picnic Area; Wheelchair Accessible"
                     LatLng: [{
                         lat: 43.94008451249478,
                         lng: -77.41696616020205
@@ -117,7 +118,8 @@
             function addMarkerInfo() {
                 for (var i = 0; i < markersOnMap.length; i++) {
                     var contentString = '<div id="content"><h1>' + markersOnMap[i].placeName +
-                        '</h1><p>Lorem ipsum dolor sit amet, vix mutat posse suscipit id, vel ea tantas omittam detraxit.</p></div>';
+                        '</h1><p>' + markersOnMap[i].placeDesc +
+                        '</p></div>';
 
                     const marker = new google.maps.Marker({
                         position: markersOnMap[i].LatLng[0],
