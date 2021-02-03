@@ -31,96 +31,101 @@
   </head>
   
   <script>
-  function initAutocomplete() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {
-      lat: 35.6895,
-      lng: 139.6917
-    },
-    zoom: 13,
-    mapTypeId: 'roadmap'
-  });
-  // create the shared InfoWindow
-  infoWindow = new google.maps.InfoWindow();
-  // Create the search box and link it to the UI element.
-  var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+ var map;
+            var InforObj = [];
+            var centerCords = {
+                lat: -25.344,
+                lng: 131.036
+            };
+            var markersOnMap = [{
+                    placeName: "Australia (Uluru)",
+                    LatLng: [{
+                        lat: -25.344,
+                        lng: 131.036
+                    }]
+                },
+                {
+                    placeName: "Australia (Melbourne)",
+                    LatLng: [{
+                        lat: -37.852086,
+                        lng: 504.985963
+                    }]
+                },
+                {
+                    placeName: "Australia (Canberra)",
+                    LatLng: [{
+                        lat: -35.299085,
+                        lng: 509.109615
+                    }]
+                },
+                {
+                    placeName: "Australia (Gold Coast)",
+                    LatLng: [{
+                        lat: -28.013044,
+                        lng: 513.425586
+                    }]
+                },
+                {
+                    placeName: "Australia (Perth)",
+                    LatLng: [{
+                        lat: -31.951994,
+                        lng: 475.858081
+                    }]
+                }
+            ];
 
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
+            window.onload = function () {
+                initMap();
+            };
 
-    if (places.length == 0) {
-      return;
-    }
+            function addMarkerInfo() {
+                for (var i = 0; i < markersOnMap.length; i++) {
+                    var contentString = '<div id="content"><h1>' + markersOnMap[i].placeName +
+                        '</h1><p>Lorem ipsum dolor sit amet, vix mutat posse suscipit id, vel ea tantas omittam detraxit.</p></div>';
 
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
-      if (!place.geometry) {
-        console.log("Returned place contains no geometry");
-        return;
-      }
+                    const marker = new google.maps.Marker({
+                        position: markersOnMap[i].LatLng[0],
+                        map: map
+                    });
 
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
-  });
+                    const infowindow = new google.maps.InfoWindow({
+                        content: contentString,
+                        maxWidth: 200
+                    });
 
-  setMarkers(map, food);
-  setMarkers(map, views);
-}
+                    marker.addListener('click', function () {
+                        closeOtherInfo();
+                        infowindow.open(marker.get('map'), marker);
+                        InforObj[0] = infowindow;
+                    });
+                    // marker.addListener('mouseover', function () {
+                    //     closeOtherInfo();
+                    //     infowindow.open(marker.get('map'), marker);
+                    //     InforObj[0] = infowindow;
+                    // });
+                    // marker.addListener('mouseout', function () {
+                    //     closeOtherInfo();
+                    //     infowindow.close();
+                    //     InforObj[0] = infowindow;
+                    // });
+                }
+            }
 
+            function closeOtherInfo() {
+                if (InforObj.length > 0) {
+                    InforObj[0].set("marker", null);
+                    InforObj[0].close();
+                    InforObj.length = 0;
+                }
+            }
 
-var views = [
-  //Tokyo     
-  ['Tokyu Plaza Omotesando Harajuku', 35.66871, 139.70598, 0],
-  ['Shinjuku', 35.69384, 139.70354, 0],
-  ['Robot Restaurant', 35.69431, 139.70284, 0],
-  ['Shinjuku Crossing Intersection', 35.65945, 139.70061, 0],
-  ['Starbucks Tokyu Plaza', 35.66886, 139.70603, 0]
-];
-
-var food = [
-  //Tokyo    
-  ['2Chome Tsukemen Gachi', 35.69126, 139.70853, 1],
-  ['Tsukiji Fish Market', 35.66548, 139.77066, 1],
-  ['Tonkatsu Tonki', 35.6336, 139.71429, 1],
-];
-
-function setMarkers(map, locations) {
-  // Add markers to the map
-  for (var i = 0; i < locations.length; i++) {
-    var locale = locations[i];
-    var myLatLng = new google.maps.LatLng(locale[1], locale[2]);
-    var icon_to_use;
-    var infowindow = null;
-    if (locale[3] < 1) {
-      icon_to_use = 'http://maps.google.com/mapfiles/ms/micons/blue.png';
-    } else {
-      icon_to_use = 'http://maps.google.com/mapfiles/ms/micons/green.png';
-    }
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      icon: icon_to_use,
-      info: locale[0],
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.setContent(this.info);
-      infoWindow.open(map, this);
-    });
-  }
-}
-google.maps.event.addDomListener(window, "load", initAutocomplete);
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 4,
+                    center: centerCords
+                });
+                addMarkerInfo();
+            }
   </script>
  
   <body>
