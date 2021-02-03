@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Top 10 Wineries in PEC</title>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=initMap&libraries=&v=weekly"
-  defer
-></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
-  * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+  <title>Top 10 Wineries in PEC</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script scr="
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=initMap&libraries=&v=weekly"
+    defer
+  ></script>
+  <style type="text/css">
+    /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+    #map {
+      height: 100%;
+    }
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-</style>
-  
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
 <script>
        
   var content1 = 
@@ -110,13 +112,16 @@
     "description": content10
     }];
   
-  let map;
+ 
   function initMap() {
     const pec = { lat: 43.99995890218392, lng: -77.2327582844977 };
-    const map = new google.maps.Map(document.getElementById("map"), {
+		var mapOptions = {
       center: pec,
       zoom: 10,
-    });
+      mapTypeId: 'roadmap'
+    };
+  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  }
   
    //Info Window
    var infoWindow = new google.maps.InfoWindow({
@@ -144,9 +149,7 @@
      })(marker, data);
    }
   </script>
-  
- </head>
-  
+ 
   <body> 
     <h1>Top 10 Wineries in Prince Edward County, Ontario</div>
     <!-- URL reference for below text:  -->
