@@ -7,8 +7,6 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
-    
-    
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -23,6 +21,7 @@
         margin: 0;
         padding: 0;
       }
+      /*Format text*/    
       h1 {
         color: #722f37;
         font-size: 20px;
@@ -57,7 +56,7 @@
         font-weight: normal;
 	font-style: italic;
 	    }
-	      
+      /*Format image*/      
       .image1{
       	float: left;
 	padding-left: 10px;
@@ -65,15 +64,18 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
       }
+      /*Format header for title and sub headings*/
       .header{
         background-color: #ffb6c1;
 	margin-top: 0px;
         margin-bottom: 0px;
 	text-align: center;
 	    }
+	/*Format colour for container for div containg paragraph and image*/    
        .container {
 	      background-color: #ffe9ec;
 	    }
+	/*Format content of paragraph*/    
        .content {
 	padding-bottom: 155px;
 	margin-top: 0px;
@@ -82,6 +84,7 @@
 	padding-right: 10px;
 	padding-left: 10px;
 	    }
+       /*Format footer containing link back to home page*/
        .footer{
 	font-family: "Times New Roman", Times, serif;
         font-size: 15px;
@@ -91,168 +94,159 @@
         margin-bottom: 0px;
 	font-style: normal;
 	text-align: center;
-	    }
-	    
+	    }    
     </style>
   </head>
   
   <script>
- var map;
-            var InforObj = [];
-            var centerCords = {
-                lat: 43.99995890218392,
-                lng: -77.23550486659113
-            };
-            var markersOnMap = [{
-                    placeName: "Sandbanks Estate Winery",
-                    placeDesc: "Address: 17598 Loyalist Prky, Wellington, ON <br>Tasting: Mon to Sun, by appointment <br>Tours: Complimentary tours daily <br>Other: Dog Friendly, Food Pairings, Picnic Area, Wheelchair Accessible",
-                    LatLng: [{
-                        lat: 43.94008451249478,
-                        lng: -77.41696616020205
-                    }]
-                },
-                {
-                    placeName: "TerraCello Winery",
-                    placeDesc: "Address: 2436 County Rd 1, Bloomfield, ON <br>Tasting: Only available by the bottle <br> Other: Private Events, Outdoor Patio, Pizzeria <br>Enogastronmic Tours: $100/person for 1hr",
-                    LatLng: [{
-                        lat: 44.02028270774693,
-                        lng: -77.29948634286238
-                    }]
-                },
-                {
-                    placeName: "Karlo Estates Winery",
-                    placeDesc: "Address: 561 Danforth Rd, Wellington, ON <br>Tasting: Mon to Sun, $4 per 1oz., $10 for 3, $15 for 5 <br>Tours: self guided tours available daily <br>Other: Event Space, Tasting Plates, Picnic Area",
-                    LatLng: [{
-                        lat: 43.9699060230289,
-                        lng: -77.37134767095976
-                    }]
-                },
-                {
-                    placeName: "Lighthall Vineyards",
-                    placeDesc: "Address: 308 Lighthall Rd, Milford. ON <br>Tasting: Wed to Sun <br>Other: Small low volume and high quality winery, Produced in non-interventionist manner, Produces locally made cheese",
-                    LatLng: [{
-                        lat: 43.89314927017774,
-                        lng: -77.12345273478509
-                    }]
-                },
-                {
-                    placeName: "Norman Hardie Winery and Vineyard",
-                    placeDesc: "Address: 1152 Greer Rd, Wellington, ON <br>Tasting: Mon to Sun, walk-ins welcome <br>Other: Dog Friendly, Pizza Oven, Restaurant, Wheelchair Accessible",
-                    LatLng: [{
-                        lat: 43.95780170753629,
-                        lng: -77.44502194932953
-                    }]
-                },
-                {
-                    placeName: "Black Prince Winery",
-                    placeDesc: "Address: 13370 Loyalist Prky, Picton, ON <br>Tasting: Mon to Sun, complimentary tasting of featured wines, $5 for 3 otherwise; <br>Other: Event Space, Pizza Oven, Sustainably Farmed",
-                    LatLng: [{
-                        lat: 44.005354534040684,
-                        lng: -77.16401022041812
-                    }]
-                },
-                {
-                    placeName: "Rosehall Run Vineyards",
-                    placeDesc: "Address: 1243 Greer Rd, Wellington, ON <br>Tasting: Mon to Sun, $5 <br>Tours: by appointment <br>Other: Dog Friendly, Light Snacks, Picnic Area, Sustainably Farmed, Wheelchair Accessible",
-                    LatLng: [{
-                        lat: 43.953606505774545,
-                        lng: -77.4492204280055
-                    }]
-                },
-                {
-                    placeName: "Three Dog Winery",
-                    placeDesc: "Address: 1920 Fish Lake, Picton, ON <br>Tasting: Mon to Sun, $1/complimentary with purchase <br>Tours: call ahead, tasting fees apply <br>Other: Event Space, Light Lunch, Live Music, Picnic Area",
-                    LatLng: [{
-                        lat: 44.13942806627715,
-                        lng: -77.12025593271107
-                    }]
-                },
-                {
-                    placeName: "Huff Estates Winery",
-                    placeDesc: "Address: 2274 County Rd 1, Bloomfield, ON <br>Tasting: Mon to Sun, $2 each or $5 for 3 <br>Tours: $8/person, incluses 3 samples <br>Other: Pizza Oven, Restaurant, Event Space, Picnic Area",
-                    LatLng: [{
-                        lat: 44.023513740213346,
-                        lng: -77.28779744040993
-                    }]
-                },
-                {
-                    placeName: "Waupoos Estates Winery",
-                    placeDesc: "Address: 3016 County Rd 8, Picton, ON <br>Tasting: Mon to Sun, $1 each, $2 for reserves and ice wines <br>Tours: Mon to Sun, or by appointment <br>Other: Event Space and Restaurant",
-                    LatLng: [{
-                        lat: 44.01952759501089,
-                        lng: -76.9717868911636
-                    }]
-                },
-                        
-            ];
+	  var map;
+	  var InforObj = [];
+	  var centerCords = {
+		  lat: 43.99995890218392,
+		  lng: -77.23550486659113
+	  };
+	  var markersOnMap = [{
+		  placeName: "Sandbanks Estate Winery",
+		  placeDesc: "Address: 17598 Loyalist Prky, Wellington, ON <br>Tasting: Mon to Sun, by appointment <br>Tours: Complimentary tours daily <br>Other: Dog Friendly, Food Pairings, Picnic Area, Wheelchair Accessible",
+		  LatLng: [{
+			  lat: 43.94008451249478,
+			  lng: -77.41696616020205
+		  }]
+	  },
+	  {
+		  placeName: "TerraCello Winery",
+		  placeDesc: "Address: 2436 County Rd 1, Bloomfield, ON <br>Tasting: Only available by the bottle <br> Other: Private Events, Outdoor Patio, Pizzeria <br>Enogastronmic Tours: $100/person for 1hr",
+		  LatLng: [{
+			  lat: 44.02028270774693,
+			  lng: -77.29948634286238
+		  }]
+	  },
+	  {
+		  placeName: "Karlo Estates Winery",
+		  placeDesc: "Address: 561 Danforth Rd, Wellington, ON <br>Tasting: Mon to Sun, $4 per 1oz., $10 for 3, $15 for 5 <br>Tours: self guided tours available daily <br>Other: Event Space, Tasting Plates, Picnic Area",
+		  LatLng: [{
+			  lat: 43.9699060230289,
+			  lng: -77.37134767095976
+		  }]
+	  },
+	  {
+		  placeName: "Lighthall Vineyards",
+		  placeDesc: "Address: 308 Lighthall Rd, Milford. ON <br>Tasting: Wed to Sun <br>Other: Small low volume and high quality winery, Produced in non-interventionist manner, Produces locally made cheese",
+		  LatLng: [{
+			  lat: 43.89314927017774,
+			  lng: -77.12345273478509
+		  }]
+	  },
+	  {
+		  placeName: "Norman Hardie Winery and Vineyard",
+		  placeDesc: "Address: 1152 Greer Rd, Wellington, ON <br>Tasting: Mon to Sun, walk-ins welcome <br>Other: Dog Friendly, Pizza Oven, Restaurant, Wheelchair Accessible",
+		  LatLng: [{
+			  lat: 43.95780170753629,
+			  lng: -77.44502194932953
+		  }]
+	  },
+	  {
+		  placeName: "Black Prince Winery",
+		  placeDesc: "Address: 13370 Loyalist Prky, Picton, ON <br>Tasting: Mon to Sun, complimentary tasting of featured wines, $5 for 3 otherwise; <br>Other: Event Space, Pizza Oven, Sustainably Farmed",
+		  LatLng: [{
+			  lat: 44.005354534040684,
+			  lng: -77.16401022041812
+		  }]
+	  },
+	  {
+		  placeName: "Rosehall Run Vineyards",
+		  placeDesc: "Address: 1243 Greer Rd, Wellington, ON <br>Tasting: Mon to Sun, $5 <br>Tours: by appointment <br>Other: Dog Friendly, Light Snacks, Picnic Area, Sustainably Farmed, Wheelchair Accessible",
+		  LatLng: [{
+			  lat: 43.953606505774545,
+			  lng: -77.4492204280055
+		  }]
+	  },
+	  {
+		  placeName: "Three Dog Winery",
+		  placeDesc: "Address: 1920 Fish Lake, Picton, ON <br>Tasting: Mon to Sun, $1/complimentary with purchase <br>Tours: call ahead, tasting fees apply <br>Other: Event Space, Light Lunch, Live Music, Picnic Area",
+		  LatLng: [{
+			  lat: 44.13942806627715,
+			  lng: -77.12025593271107
+		  }]
+	  },
+	  {
+		  placeName: "Huff Estates Winery",
+		  placeDesc: "Address: 2274 County Rd 1, Bloomfield, ON <br>Tasting: Mon to Sun, $2 each or $5 for 3 <br>Tours: $8/person, incluses 3 samples <br>Other: Pizza Oven, Restaurant, Event Space, Picnic Area",
+		  LatLng: [{
+			  lat: 44.023513740213346,
+			  lng: -77.28779744040993
+		  }]
+	  },
+	  {
+		  placeName: "Waupoos Estates Winery",
+		  placeDesc: "Address: 3016 County Rd 8, Picton, ON <br>Tasting: Mon to Sun, $1 each, $2 for reserves and ice wines <br>Tours: Mon to Sun, or by appointment <br>Other: Event Space and Restaurant",
+		  LatLng: [{
+			  lat: 44.01952759501089,
+			  lng: -76.9717868911636
+		  }]
+	   },
+			     ];
 
-            window.onload = function () {
-                initMap();
-            };
+	   window.onload = function () {
+		   initMap();
+	   };
 
-            function addMarkerInfo() {
-                for (var i = 0; i < markersOnMap.length; i++) {
-                    var contentString = '<div id="content"><h1>' + markersOnMap[i].placeName +
-                        '</h1><h2>' + markersOnMap[i].placeDesc +
-                        '</h2></div>';
-                    
-                    const marker = new google.maps.Marker({
-                        position: markersOnMap[i].LatLng[0],
-                        map: map,
-                        icon: "https://cpenlington.github.io/googlelab/images/winebar.png"
-                    });
+	   function addMarkerInfo() {   
+		   // For loop containing infoWindow content in contentString, markers, listening and opening infoWindow
+		   for (var i = 0; i < markersOnMap.length; i++) {
+			   var contentString = '<div id="content"><h1>' + markersOnMap[i].placeName +
+				'</h1><h2>' + markersOnMap[i].placeDesc +
+				'</h2></div>';
 
-                    const infowindow = new google.maps.InfoWindow({
-                        content: contentString,
-                        maxWidth: 300
-                    });
+			    const marker = new google.maps.Marker({
+				position: markersOnMap[i].LatLng[0],
+				map: map,
+				icon: "https://cpenlington.github.io/googlelab/images/winebar.png"
+			    });
 
-                    marker.addListener('click', function () {
-                        closeOtherInfo();
-                        infowindow.open(marker.get('map'), marker);
-                        InforObj[0] = infowindow;
-                    });
-                    // marker.addListener('mouseover', function () {
-                    //     closeOtherInfo();
-                    //     infowindow.open(marker.get('map'), marker);
-                    //     InforObj[0] = infowindow;
-                    // });
-                    // marker.addListener('mouseout', function () {
-                    //     closeOtherInfo();
-                    //     infowindow.close();
-                    //     InforObj[0] = infowindow;
-                    // });
-                }
-            }
+			    const infowindow = new google.maps.InfoWindow({
+				content: contentString,
+				maxWidth: 300
+			    });
 
-            function closeOtherInfo() {
-                if (InforObj.length > 0) {
-                    InforObj[0].set("marker", null);
-                    InforObj[0].close();
-                    InforObj.length = 0;
-                }
-            }
-
-            function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 11,
-                    center: centerCords
-                });
-                addMarkerInfo();
-            }
+			    marker.addListener('click', function () {
+				closeOtherInfo();
+				infowindow.open(marker.get('map'), marker);
+				InforObj[0] = infowindow;
+			    }
+			}
+		    }
+		    //Close other infoWindow when you click on a new marker and open a new infoWindow
+		    function closeOtherInfo() {
+			if (InforObj.length > 0) {
+			    InforObj[0].set("marker", null);
+			    InforObj[0].close();
+			    InforObj.length = 0;
+			}
+		    }
+		    //Initialize map
+		    function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+			    zoom: 11,
+			    center: centerCords
+			});
+			addMarkerInfo();
+		    }
   </script>
  
   <body>
-	  <div class="header"><h4>Top 10 Wineries in Prince Edward County, Ontario</h4>
-		  <h3>Take a Tour of Wine Country</h3>
-	  </div>
-    <div class="container"><img class="image1" src="./images/winery.jpg" alt="Winery" width="500" height="304">
-      <p class="content">Each winery is known for their distinct character and wine selection. While each have something special to offer, some of the most popular varietals include: Pinot noir, Chardonnay, Frontenac, Cabernet Franc, Riesling and Gamay noir. Many of the County wineries are award winning and have received Provincial, National and International recognition for their excellence in craftsmanship.</p>
-	  </div>
-    </div>
-    <div id="map"></div>
-    <p class="footer"><a href="/googlelab/index.html">Back to Home Page</a></p>
+	<div class="header">
+		<h4>Top 10 Wineries in Prince Edward County, Ontario</h4>
+		<h3>Take a Tour of Wine Country</h3>
+	</div>
 	  
-
+	<div class="container">
+		<img class="image1" src="./images/winery.jpg" alt="Winery" width="500" height="304">
+		<p class="content">Each winery is known for their distinct character and wine selection. While each have something special to offer, some of the most popular varietals include: Pinot noir, Chardonnay, Frontenac, Cabernet Franc, Riesling and Gamay noir. Many of the County wineries are award winning and have received Provincial, National and International recognition for their excellence in craftsmanship.</p>
+	</div>
+	<!--The div element for the map -->
+	<div id="map"></div>
+	<!--Link back to home page -->
+	<p class="footer"><a href="/googlelab/index.html">Back to Home Page</a></p>
   </body>
 </html>
