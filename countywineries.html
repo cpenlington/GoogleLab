@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -128,7 +124,10 @@ function LoadMap() {
         })(marker, data);
     } <
     /script>
- 
+ <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=callback=initMap&libraries=&v=weekly"
+  defer
+    ></script>
   <body>
     <h1>Top 10 Wineries in Prince Edward County, Ontario</h1>
     <div id="map"></div>
