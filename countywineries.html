@@ -48,15 +48,19 @@
       {"title": 'Huff Estates Winery', "lat": '44.023513740213346', "lng": '-77.28779744040993', "description": content9},
       {"title": 'Waupoos Estates Winery', "lat": '44.01952759501089', "lng": '-76.9717868911636', "description": content10},
       ];
-        
-      function initGoogleMap(){
-        const infowindow = new google.maps.InfoWindow(); // Only one InfoWindow
-        const pec = { lat: 43.99995890218392, lng: -77.23550486659113 };
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 12,
-            center: pec,
+      
+      window.onload = LoadMap
+      
+      function LoadMap() {
+        var mapOptions = {
+          center: new google.maps.LatLng(43.99995890218392, -77.23550486659113),
+          zoom: 12,
         });
-
+        
+       var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        
+       var infoWindow = new google.maps.InfoWindow();
+        
        for (var i = 0; i < markers.length; i++) {
          var data = markers[i];
 
