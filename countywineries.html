@@ -47,14 +47,14 @@ function initGoogleMap(){
       center: pec,
   });
   
-  function placeMarker( loc ) {
+  function placeMarker( locations ) {
     const marker = new google.maps.Marker({
-      position : new google.maps.LatLng( loc.lat, loc.lng ),
+      position : new google.maps.LatLng( locations.lat, locations.lng ),
       map : map
     });
     google.maps.event.addListener(marker, 'click', function(){
         infowindow.close(); // Close previously opened infowindow
-        infowindow.setContent(`<div id="infowindow">${loc.title}</div>`);
+        infowindow.setContent(`<div id="infowindow">${locations.title}</div>`);
         infowindow.open(map, marker);
     });
   }
