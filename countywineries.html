@@ -25,13 +25,46 @@
       }
     </style>
     <script>
+      
+const locations = [
+{"title": 'Sandbanks Estate Winery', "lat": 43.94008451249478, "lng": -77.41696616020205, "description": content1},
+{"title": 'TerraCello Winery', "lat": 44.02028270774693, "lng": -77.29948634286238, "description": content2},
+{"title": 'Karlo Estates Winery',  "lat": 43.9699060230289, "lng": -77.37134767095976, "description": content3},
+{"title": 'Lighthall Vineyards', "lat": 43.89314927017774, "lng": -77.12345273478509,"description": content4},
+{"title": 'Norman Hardie Winery and Vineyard', "lat": 43.95780170753629, "lng": -77.44502194932953, "description": content5},
+{"title": 'Black Prince Winery', "lat": 44.005354534040684, "lng": -77.16401022041812, "description": content6},
+{"title": 'Rosehall Run Vineyards', "lat": 43.953606505774545, "lng": -77.4492204280055, "description": content7},
+{"title": 'Three Dog Winery', "lat": 44.13942806627715, "lng": -77.12025593271107,"description": content8},
+{"title": 'Huff Estates Winery', "lat": 44.023513740213346, "lng": -77.28779744040993, "description": content9},
+{"title": 'Waupoos Estates Winery', "lat": 44.01952759501089, "lng": -76.9717868911636, "description": content10},
+];
+        
+function initGoogleMap(){
+  const infowindow = new google.maps.InfoWindow(); // Only one InfoWindow
+  const pec = { lat: 43.99995890218392, lng: -77.23550486659113 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 12,
+      center: pec,
+  });
+  
+  function placeMarker( loc ) {
+    const marker = new google.maps.Marker({
+      position : new google.maps.LatLng( loc.lat, loc.lng ),
+      map : map
+    });
+    google.maps.event.addListener(marker, 'click', function(){
+        infowindow.close(); // Close previously opened infowindow
+        infowindow.setContent(`<div id="infowindow">${loc.title}</div>`);
+        infowindow.open(map, marker);
+    });
+  }
+  
+  // ITERATE ALL LOCATIONS. Pass every location to placeMarker
+  locations.forEach( placeMarker );
+  
+}
 
-      function initMap() {
-        const pec = { lat: 43.99995890218392, lng: -77.23550486659113 };
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 12,
-          center: pec,
-        });
+google.maps.event.addDomListener(window, 'load', initGoogleMap);     
 
     </script>
   </head>
