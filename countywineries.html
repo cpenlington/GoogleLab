@@ -1,3 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Top 10 Wineries in PEC</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      function initMap() {
+        const pec = { lat: 43.99995890218392, lng: -77.2327582844977 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: pec,
+        });
+        
+        
+var content1 = 
+"<div><img scr="/Images/pic1.jpg' height=''><h1>Sandbanks Winery</h1><p>Address: 17598 Loyalist Prky, Wellington, ON; Tasting: Mon to Sun, by appointment; Tours: Complimentary tours daily; Dog Friendly; Food Pairings; Picnic Area; Wheelchair Accessible</p></div>"
+
+var content2 = 
+"<div><img scr="/Images/pic2.jpg' height=''><h1>TerraCello Winery</h1><p>Address: 2436 County Rd 1, Bloomfield, ON; Tasting: Only available by the bottle; Private Events; Outdoor Patio; Pizzeria; Enogastronmic Tours: $100/person for 1hr</p></div>"
+  
+var content3 =   
+"<div><img scr="/Images/pic3.jpg' height=''><h1>Karlo Estates</h1><p>Address: 561 Danforth Rd, Wellington, ON; Tasting: Mon to Sun, $4 per 1oz., $10 for 3, $15 for 5; Tours: self guided tours available daily; Event Space; Tasting Plates; Picnic Area</p></div>"
+
+var content4 = 
+"<div><img scr="/Images/pic4.jpg' height=''><h1>Lighthall Vineyards</h1><p>Address: 308 Lighthall Rd, Milford. ON; Tasting: Wed to Sun; Small low volume and high quality winery; Produced in non-interventionist manner; Produces locally made cheese</p></div>"
+
+var content5 = 
+"<div><img scr="/Images/pic5.jpg' height=''><h1>Norman Hardie Winery</h1><p>Address: 1152 Greer Rd, Wellington, ON; Tasting: Mon to Sun, walk-ins welcome; Dog Friendly; Pizza Oven; Restaurant; Wheelchair Accessible</p></div>"
+
+var content6 = 
+"<div><img scr="/Images/pic6.jpg' height=''><h1>Black Prince Winery</h1><p>Address: 13370 Loyalist Prky, Picton, ON; Tasting: Mon to Sun, complimentary tasting of featured wines, $5 for 3 otherwise; Event Space; Pizza Oven, Sustainably Farmed</p></div>"
+
+var content7 = 
+"<div><img scr="/Images/pic7.jpg' height=''><h1>Rosehall Run</h1><p>Address: 1243 Greer Rd, Wellington, ON; Tasting: Mon to Sun, $5; Tours: by appointment; Dog Friendly; Light Snacks; Picnic Area; Sustainably Farmed; Wheelchair Accessible</p></div>"
+
+var content8 = 
+"<div><img scr="/Images/pic8.jpg' height=''><h1>Three Dog Winery</h1><p>Address: 1920 Fish Lake, Picton, ON; Tasting: Mon to Sun, $1/complimentary with purchase; Tours: call ahead, tasting fees apply; Event Space; Light Lunch; Live Music; Picnic Area</p></div>"
+
+var content9 = 
+"<div><img scr="/Images/pic9.jpg' height=''><h1>Huff Estates Winery</h1><p>Address: 2274 County Rd 1, Bloomfield, ON; Tasting: Mon to Sun, $2 each or $5 for 3, Tours: $8/person, incluses 3 samples; Pizza Oven; Restaurant; Event Space; Picnic Area</p></div>"
+
+var content10 = 
+"<div><img scr="/Images/pic10.jpg' height=''><h1>Waupoos Estate Winery</h1><p>Address: 3016 County Rd 8, Picton, ON: Tasting: Mon to Sun, $1 each, $2 for reserves and ice wines; Tours: Mon to Sun, or by appointment; Event Space; Restaurant</p></div>"
+
+
 var markers = [
 { 
   "title": 'Sandbanks Estate Winery',
