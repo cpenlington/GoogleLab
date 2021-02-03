@@ -31,106 +31,55 @@
   </head>
   
   <script>
-    var content1 = "<div>Sandbanks Winery Address: 17598 Loyalist Prky, Wellington, ON; Tasting: Mon to Sun, by appointment; Tours: Complimentary tours daily; Dog Friendly; Food Pairings; Picnic Area; Wheelchair Accessible</div>"
-    var content2 = "<div>TerraCello Winery Address: 2436 County Rd 1, Bloomfield, ON; Tasting: Only available by the bottle; Private Events; Outdoor Patio; Pizzeria; Enogastronmic Tours: $100/person for 1hr</div>"
-    var content3 = "<div>Karlo Estates Address: 561 Danforth Rd, Wellington, ON; Tasting: Mon to Sun, $4 per 1oz., $10 for 3, $15 for 5; Tours: self guided tours available daily; Event Space; Tasting Plates; Picnic Area</div>"
-    var content4 = "<div>Lighthall Vineyards Address: 308 Lighthall Rd, Milford. ON; Tasting: Wed to Sun; Small low volume and high quality winery; Produced in non-interventionist manner; Produces locally made cheese</div>"
-    var content5 = "<div>Norman Hardie Winery Address: 1152 Greer Rd, Wellington, ON; Tasting: Mon to Sun, walk-ins welcome; Dog Friendly; Pizza Oven; Restaurant; Wheelchair Accessible</div>"
-    var content6 = "<div>Black Prince Winery Address: 13370 Loyalist Prky, Picton, ON; Tasting: Mon to Sun, complimentary tasting of featured wines, $5 for 3 otherwise; Event Space; Pizza Oven, Sustainably Farmed</div>"
-    var content7 = "<div>Rosehall Run Address: 1243 Greer Rd, Wellington, ON; Tasting: Mon to Sun, $5; Tours: by appointment; Dog Friendly; Light Snacks; Picnic Area; Sustainably Farmed; Wheelchair Accessible</div>"
-    var content8 = "<div>Three Dog Winery Address: 1920 Fish Lake, Picton, ON; Tasting: Mon to Sun, $1/complimentary with purchase; Tours: call ahead, tasting fees apply; Event Space; Light Lunch; Live Music; Picnic Area</div>"
-    var content9 = "<div>Huff Estates Winery Address: 2274 County Rd 1, Bloomfield, ON; Tasting: Mon to Sun, $2 each or $5 for 3, Tours: $8/person, incluses 3 samples; Pizza Oven; Restaurant; Event Space; Picnic Area</div>"
-    var content10 = "<div>Waupoos Estate Winery Address: 3016 County Rd 8, Picton, ON: Tasting: Mon to Sun, $1 each, $2 for reserves and ice wines; Tours: Mon to Sun, or by appointment; Event Space; Restaurant</div>"
+  function initAutocomplete() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {
+      lat: 35.6895,
+      lng: 139.6917
+    },
+    zoom: 13,
+    mapTypeId: 'roadmap'
+  });
+  // create the shared InfoWindow
+  infoWindow = new google.maps.InfoWindow();
 
-    var markers = [{
-            "title": 'Sandbanks Estate Winery',
-            "lat": '43.94008451249478',
-            "lng": '-77.41696616020205',
-            "description": content1
-        },
-        {
-            "title": 'TerraCello Winery',
-            "lat": '44.02028270774693',
-            "lng": '-77.29948634286238',
-            "description": content2
-        },
-        {
-            "title": 'Karlo Estates Winery',
-            "lat": '43.9699060230289',
-            "lng": '-77.37134767095976',
-            "description": content3
-        },
-        {
-            "title": 'Lighthall Vineyards',
-            "lat": '43.89314927017774',
-            "lng": '-77.12345273478509',
-            "description": content4
-        },
-        {
-            "title": 'Norman Hardie Winery and Vineyard',
-            "lat": '43.95780170753629',
-            "lng": '-77.44502194932953',
-            "description": content5
-        },
-        {
-            "title": 'Black Prince Winery',
-            "lat": '44.005354534040684',
-            "lng": '-77.16401022041812',
-            "description": content6
-        },
-        {
-            "title": 'Rosehall Run Vineyards',
-            "lat": '43.953606505774545',
-            "lng": '-77.4492204280055',
-            "description": content7
-        },
-        {
-            "title": 'Three Dog Winery',
-            "lat": '44.13942806627715',
-            "lng": '-77.12025593271107',
-            "description": content8
-        },
-        {
-            "title": 'Huff Estates Winery',
-            "lat": '44.023513740213346',
-            "lng": '-77.28779744040993',
-            "description": content9
-        },
-        {
-            "title": 'Waupoos Estates Winery',
-            "lat": '44.01952759501089',
-            "lng": '-76.9717868911636',
-            "description": content10
-        },
-    ];
+var views = [
+  //Tokyo     
+  ['Tokyu Plaza Omotesando Harajuku', 35.66871, 139.70598, 0],
+  ['Shinjuku', 35.69384, 139.70354, 0],
+  ['Robot Restaurant', 35.69431, 139.70284, 0],
+  ['Shinjuku Crossing Intersection', 35.65945, 139.70061, 0],
+  ['Starbucks Tokyu Plaza', 35.66886, 139.70603, 0]
+];
 
-    window.onload = LoadMap;
+var food = [
+  //Tokyo    
+  ['2Chome Tsukemen Gachi', 35.69126, 139.70853, 1],
+  ['Tsukiji Fish Market', 35.66548, 139.77066, 1],
+  ['Tonkatsu Tonki', 35.6336, 139.71429, 1],
+];
 
-    function LoadMap() {
-        var mapOptions = {
-            center: new google.maps.LatLng(43.99995890218392, -77.23550486659113),
-            zoom: 12,
-        };
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        var infoWindow = new google.maps.InfoWindow();
-        for (var i = 0; i < markers.length; i++) {
-            var data = markers[i];
-            var mylatlng = new google.maps.LatLng(data.lat, data.lng);
-            var marker = new google.maps.Markers({
-              position: mylatlng,
-              map: map,
-              title: data.title,
-               
-            });
-            //Attach click event to the marker
-            (function(marker, data) {
-                google.maps.event.addListener(marker, "click", function(e) {
-                    //Content inside div to set height and width of InfoWindow
-                    infoWindow.setContent('<div style="width:250px">' + data.description + '</div>');
-                    infoWindow.open(map, marker);
-                });
-            })(marker, data);
-        } }
+function setMarkers(map, locations) {
+  // Add markers to the map
+  for (var i = 0; i < locations.length; i++) {
+    var locale = locations[i];
+    var myLatLng = new google.maps.LatLng(locale[1], locale[2]);
+    
+    var infowindow = null;
+    
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      info: locale[0],
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infoWindow.setContent(this.info);
+      infoWindow.open(map, this);
+    });
+  }
+}
+google.maps.event.addDomListener(window, "load", initAutocomplete);
   </script>
  
   <body>
