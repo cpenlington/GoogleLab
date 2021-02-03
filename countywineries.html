@@ -7,11 +7,13 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=initMap&libraries=&v=weekly"
     defer
   ></script>
+  
   <style type="text/css">
     /* Always set the map height explicitly to define the size of the div
     * element that contains the map. */
     #map {
       height: 100%;
+      width: 100%;
     }
 
     /* Optional: Makes the sample page fill the window. */
@@ -22,23 +24,23 @@
       padding: 0;
     }
   </style>
-</head>
-<script>
   
-  function initMap() {
-    var mapOptions = {
-      zoom: 10,
-      center: new google.maps.LatLng(43.99995890218392, -77.2327582844977),
-      mapTypeId: 'roadmap'
-    };
-  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  }
+  <script>
+    // Initialize and add the map
+        function initMap() {
+          const pec = { lat: 43.99995890218392, lng: -77.2327582844977 };
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: pec,
+          });
+   </script>
   
-  </script>
+ </head>
  
-  <body> 
-    <h1>Top 10 Wineries in Prince Edward County, Ontario</div>
+  <body>
+    <h1>Trent University</h1>
     <!-- URL reference for below text:  -->
+    <!--The div element for the map -->
     <div id="map"></div>
     <p><a href="/googlelab/index.html">Back to Home Page</a></p>
   </body>
