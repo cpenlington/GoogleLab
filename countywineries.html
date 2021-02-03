@@ -140,11 +140,11 @@
                     var contentString = '<div id="content"><h1>' + markersOnMap[i].placeName +
                         '</h1><h2>' + markersOnMap[i].placeDesc +
                         '</h2><p></p></div>';
-
+                    var image = '/images/winebar.png';
                     const marker = new google.maps.Marker({
                         position: markersOnMap[i].LatLng[0],
                         map: map,
-                        icon: '/images/winebar.png',
+                        icon: image
                     });
 
                     const infowindow = new google.maps.InfoWindow({
