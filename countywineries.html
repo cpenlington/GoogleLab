@@ -26,7 +26,7 @@
   </style>
 </head>
 <script>
-       
+  <!--     
   var content1 = 
   "<div><img scr="/Images/pic1.jpg' height=''><h1>Sandbanks Winery</h1><p>Address: 17598 Loyalist Prky, Wellington, ON; Tasting: Mon to Sun, by appointment; Tours: Complimentary tours daily; Dog Friendly; Food Pairings; Picnic Area; Wheelchair Accessible</p></div>"
 
@@ -111,18 +111,17 @@
     "lng": '-76.9717868911636',
     "description": content10
     }];
-  
+  -->
  
   function initMap() {
-    const pec = { lat: 43.99995890218392, lng: -77.2327582844977 };
-		var mapOptions = {
-      center: pec,
+    var mapOptions = {
       zoom: 10,
+      center: new google.maps.LatLng(43.99995890218392, -77.2327582844977),
       mapTypeId: 'roadmap'
     };
   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
   }
-  
+  <!--
    //Info Window
    var infoWindow = new google.maps.InfoWindow({
      maxWidth: 200,
@@ -148,6 +147,7 @@
        });
      })(marker, data);
    }
+   -->
   </script>
  
   <body> 
