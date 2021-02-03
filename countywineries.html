@@ -45,9 +45,9 @@
       {"title": 'Waupoos Estates Winery', "lat": '44.01952759501089', "lng": '-76.9717868911636', "description": content10},
       ];
       
-      var map;
+      window.onload = LoadMap;
       
-      function initMap() {
+      function LoadMap() {
         var mapOptions = {
           center: new google.maps.LatLng(43.99995890218392, -77.23550486659113),
           zoom: 12,
