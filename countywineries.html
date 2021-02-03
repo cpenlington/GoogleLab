@@ -4,7 +4,10 @@
     <title>Wineries in PEC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
-    
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -21,11 +24,8 @@
       }
     </style>
   </head>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2K65vBQlKRXAjpHzEMYhGOqe_bxE9-4U&callback=callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
-    <script>
+  
+   <script>
     var content1 = "<div><h1>Sandbanks Winery</h1><p>Address: 17598 Loyalist Prky, Wellington, ON; Tasting: Mon to Sun, by appointment; Tours: Complimentary tours daily; Dog Friendly; Food Pairings; Picnic Area; Wheelchair Accessible</p></div>"
     var content2 = "<div><h1>TerraCello Winery</h1><p>Address: 2436 County Rd 1, Bloomfield, ON; Tasting: Only available by the bottle; Private Events; Outdoor Patio; Pizzeria; Enogastronmic Tours: $100/person for 1hr</p></div>"
     var content3 = "<div><h1>Karlo Estates</h1><p>Address: 561 Danforth Rd, Wellington, ON; Tasting: Mon to Sun, $4 per 1oz., $10 for 3, $15 for 5; Tours: self guided tours available daily; Event Space; Tasting Plates; Picnic Area</p></div>"
@@ -76,7 +76,7 @@
             });
           })(marker, data);
         }
-    </script>
+   </script>
  
   <body>
     <h1>Top 10 Wineries in Prince Edward County, Ontario</h1>
