@@ -23,12 +23,7 @@
       }
     </style>
     <script>
-      function initMap() {
-        const pec = { lat: 43.99995890218392, lng: -77.2327582844977 };
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 15,
-          center: pec,
-        });
+     
         
         
 var content1 = 
@@ -115,6 +110,40 @@ var markers = [
   "lng": '-76.9717868911636',
   "description": content10
   }]
+let map;
+ function initMap() {
+        const pec = { lat: 43.99995890218392, lng: -77.2327582844977 };
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: pec,
+        });
+  
+   //Info Window
+   var infoWindow = new google.maps.InfoWindow({
+     maxWidth: 200,
+   });
+   
+   for (var i = 0; i < markers.length; i++) {
+     var data = markers[i];
+     
+     var myLatLng = new google.maps.LatLng(data.lat, data.lng);
+     
+     var marker = new google.maps.Marker({
+       position: myLatLng,
+       map: map,
+       animation: google.maps.Animation.DROP,
+       title: data.title,
+       icon: 'turtle.png'
+     });
+     
+     //Attach click event to marker
+     (function(marker, data) {
+       google.maps.event.addListener(marker, "click", function (e) {
+         infoWindow.open(map, marker);
+       });
+     })(marker, data);
+   }
+
     </script>
     
     <div>
