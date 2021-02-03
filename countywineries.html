@@ -117,9 +117,11 @@
             var data = markers[i];
             var mylatlng = new google.maps.LatLng(data.lat, data.lng);
             var marker = new google.maps.Markers({
-                position: mylatlng,
-                map: map,
-                title: data.title,
+              position: mylatlng,
+              map: map,
+              title: data.title,
+              icon: 'http://maps.google.com/mapfiles/ms/micons/blue.png';
+               
             });
             //Attach click event to the marker
             (function(marker, data) {
